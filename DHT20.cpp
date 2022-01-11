@@ -11,16 +11,20 @@
 
 #include "DHT20.h"
 
-#define DHT20_ADDRESS           ((uint8_t)0x38)
+const uint8_t DHT20_ADDRESS = 0x38;
 
 
 DHT20::DHT20(TwoWire *wire)
 {
   _wire        = wire;
+  //  reset() ?
   _temperature = 0;
   _humidity    = 0;
   _humOffset   = 0;
   _tempOffset  = 0;
+  _status      = 0;
+  _lastRequest = 0;
+  _lastRead    = 0;
 }
 
 
@@ -61,17 +65,15 @@ bool DHT20::readyData()
 
 int DHT20::read()
 {
-  // TODO ASYNC INTERFACE
-  // READ SENSOR
+  // READ SENSOR ==> uses the async interface!
   int status = _requestData();
-  while(!readyData())
+  if (status < 0) return status;
+  while (!readyData())
   {
     yield();
     delay(1);
   }
   _readData();
-
-  if (status < 0) return status;
 
   // CONVERT AND STORE
   _status      = _bits[0];
@@ -107,9 +109,10 @@ int DHT20::_requestData()
   _wire->write(0xAC);
   _wire->write(0x33);
   _wire->write(0x00);
-  return _wire->endTransmission();
+  int rv = _wire->endTransmission();
 
   _lastRequest = millis();
+  return rv;
 }
 
 
@@ -149,8 +152,6 @@ int DHT20::_readStatus()
 }
 
 
-
-
 uint8_t DHT20::_crc8(uint8_t *ptr, uint8_t len)
 {
   uint8_t crc = 0xFF;
@@ -172,4 +173,7 @@ uint8_t DHT20::_crc8(uint8_t *ptr, uint8_t len)
   }
   return crc;
 }
+
+
 // -- END OF FILE --
+

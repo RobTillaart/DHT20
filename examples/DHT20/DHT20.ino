@@ -7,13 +7,15 @@
 
 #include "DHT20.h"
 
-DHT20 DHT(&Wire);
+DHT20 DHT;
 
 
 void setup()
 {
   DHT.begin();
 
+  Wire.setClock(400000);
+  
   Serial.begin(115200);
   Serial.println(__FILE__);
   Serial.print("DHT20 LIBRARY VERSION: ");
@@ -31,8 +33,9 @@ void loop()
   if (millis() - DHT.lastRead() >= 1000)
   {
     // READ DATA
-    Serial.print("DHT20, \t");
+    uint32_t start = micros();
     int status = DHT.read();
+    uint32_t stop = micros();
     switch (status)
     {
     case DHT20_OK:
@@ -52,9 +55,13 @@ void loop()
       break;
     }
     // DISPLAY DATA, sensor has only one decimal.
+    Serial.print("DHT20, \t");
     Serial.print(DHT.getHumidity(), 1);
     Serial.print(",\t");
-    Serial.println(DHT.getTemperature(), 1);
+    Serial.print(DHT.getTemperature(), 1);
+    Serial.print(",\t");
+    Serial.print(stop - start);
+    Serial.print("\n");
   }
 }
 

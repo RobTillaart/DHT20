@@ -23,7 +23,7 @@
 class DHT20
 {
 public:
-  DHT20(TwoWire *wire);        // to be tested explicitly
+  DHT20(TwoWire *wire = &Wire);        // to be tested explicitly
 
 #if defined(ESP8266) || defined(ESP32)
   bool     begin(const uint8_t dataPin, const uint8_t clockPin);
@@ -41,16 +41,17 @@ public:
   int      read();
   float    getHumidity()    { return _humidity    + _humOffset; };
   float    getTemperature() { return _temperature + _tempOffset; };
-  int      status()         { return _status; };
 
   // allows 1st order calibration
   void     setHumOffset(float offset)  { _humOffset  = offset; };
   void     setTempOffset(float offset) { _tempOffset = offset; };
   float    getHumOffset()              { return _humOffset; };
   float    getTempOffset()             { return _tempOffset; };
-  uint32_t lastRead()                  { return _lastRead; };
 
-
+  // OTHER
+  uint32_t lastRead()       { return _lastRead; };
+  uint32_t lastRequest()    { return _lastRequest; };
+  int      internalStatus() { return _status; };
 
 private:
   float    _humidity;
