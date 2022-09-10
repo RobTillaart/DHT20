@@ -4,6 +4,14 @@
 // PURPOSE: Demo for DHT20 I2C humidity & temperature sensor
 //
 
+// Always check datasheet - front view
+//
+//          +--------------+
+//  VDD ----| 1            |
+//  SDA ----| 2    DHT20   |
+//  GND ----| 3            |
+//  SCL ----| 4            |
+//          +--------------+
 
 #include "DHT20.h"
 

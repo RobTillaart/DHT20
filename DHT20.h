@@ -3,21 +3,33 @@
 //    FILE: DHT20.h
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for DHT20 I2C temperature and humidity sensor.
-// VERSION: 0.1.0
+// VERSION: 0.1.1
 // HISTORY: See DHT20.cpp
 //     URL: https://github.com/RobTillaart/DHT20
 //
+
+// Always check datasheet - front view
+//
+//          +--------------+
+//  VDD ----| 1            |
+//  SDA ----| 2    DHT20   |
+//  GND ----| 3            |
+//  SCL ----| 4            |
+//          +--------------+
 
 
 #include "Arduino.h"
 #include "Wire.h"
 
-#define DHT20_LIB_VERSION                    (F("0.1.0"))
+#define DHT20_LIB_VERSION                    (F("0.1.1"))
 
 #define DHT20_OK                             0
 #define DHT20_ERROR_CHECKSUM                -10
 #define DHT20_ERROR_CONNECT                 -11
 #define DHT20_MISSING_BYTES                 -12
+
+
+#define DHT20_ACQUISITION_TIME               85
 
 
 class DHT20
@@ -33,9 +45,8 @@ public:
 
   // ASYNCHRONUOUS CALL
   int      requestData() { return _requestData(); };
-  bool     readyData();
   int      readData()    { return _readData(); };
-
+  int      convert();
 
   // SYNCHRONUOUS CALL
   int      read();
