@@ -4,7 +4,7 @@
 // PURPOSE: Demo for DHT20 I2C humidity & temperature sensor
 //
 
-// Always check datasheet - front view
+//  Always check datasheet - front view
 //
 //          +--------------+
 //  VDD ----| 1            |
@@ -55,12 +55,12 @@ void loop()
     Serial.print(" °C\t");
     Serial.print(counter);
     Serial.print("\n");
-    // new request
+    //  new request
     counter = 0;
     DHT.requestData();
   }
 
-  // other code here
+  //  other code here
   counter++;  //  dummy counter to show async behaviour
 }
 

@@ -123,21 +123,30 @@ See examples
 
 ## Future
 
+#### must
+
 - update documentation
+- improve the code
+  - check return codes etc.
   - add missing error codes
+  - **read()** should check lastRead() and return ERROR_LASTREAD
+
+#### should
+
 - test more in detail
   - test on ESP32
+- add examples
+  - asynchronous
+
+#### could
+
 - improve unit tests.
-- improve the code (check return codes etc.)
 - investigate 
   - status register bits 
   - sensor calibration (website aosong?)
 - check for optimizations.
   - mainly for asynchronous
   - 85 ms wait time?
-- add examples
-  - asynchronous
-  - 
 
 
 #### won't

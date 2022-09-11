@@ -8,7 +8,7 @@
 //     URL: https://github.com/RobTillaart/DHT20
 //
 
-// Always check datasheet - front view
+//  Always check datasheet - front view
 //
 //          +--------------+
 //  VDD ----| 1            |
@@ -43,23 +43,23 @@ public:
   bool     begin();
   bool     isConnected();
 
-  // ASYNCHRONUOUS CALL
+  //  ASYNCHRONUOUS CALL
   int      requestData() { return _requestData(); };
   int      readData()    { return _readData(); };
   int      convert();
 
-  // SYNCHRONUOUS CALL
+  //  SYNCHRONUOUS CALL
   int      read();
   float    getHumidity()    { return _humidity    + _humOffset; };
   float    getTemperature() { return _temperature + _tempOffset; };
 
-  // allows 1st order calibration
+  //  allows 1st order calibration
   void     setHumOffset(float offset)  { _humOffset  = offset; };
   void     setTempOffset(float offset) { _tempOffset = offset; };
   float    getHumOffset()              { return _humOffset; };
   float    getTempOffset()             { return _tempOffset; };
 
-  // OTHER
+  //  OTHER
   uint32_t lastRead()       { return _lastRead; };
   uint32_t lastRequest()    { return _lastRequest; };
   int      internalStatus() { return _status; };

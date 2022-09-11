@@ -4,7 +4,7 @@
 // PURPOSE: Demo for DHT20 I2C humidity & temperature sensor
 //
 
-// Always check datasheet - front view
+//  Always check datasheet - front view
 //
 //          +--------------+
 //  VDD ----| 1            |
