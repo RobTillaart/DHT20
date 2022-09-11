@@ -38,6 +38,10 @@ Front view
           +--------------+
 ```
 
+## Tested
+
+Examples verified to work with Arduino UNO and ESP32.
+
 
 ## Interface
 
