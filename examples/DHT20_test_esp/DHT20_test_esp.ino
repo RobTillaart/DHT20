@@ -13,8 +13,6 @@
 //  SCL ----| 4            |
 //          +--------------+
 
-// TODO
-
 #include "DHT20.h"
 
 DHT20 DHT(&Wire);

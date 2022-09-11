@@ -22,7 +22,7 @@ uint8_t count = 0;
 
 void setup()
 {
-  DHT.begin();
+  DHT.begin();    //  ESP32 default pins 21 22
 
   Wire.setClock(400000);
 

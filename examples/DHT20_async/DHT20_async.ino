@@ -22,7 +22,7 @@ uint32_t counter = 0;
 
 void setup()
 {
-  DHT.begin();
+  DHT.begin();  //  ESP32 default 21, 22
 
   Wire.setClock(400000);
 

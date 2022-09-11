@@ -29,7 +29,7 @@ void setup()
 
   Serial.println("\nNOTE: datasheet states 400 KHz as maximum.\n");
 
-  DHT.begin();
+  DHT.begin();  //  ESP32 default pins 21, 22
   delay(2000);
 
   for (uint32_t speed = 50000; speed < 850000; speed += 50000)
