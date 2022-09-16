@@ -151,8 +151,6 @@ See examples
 
 #### should
 
-- test more in detail
-  - test on ESP32
 - add examples
   - asynchronous
 
@@ -160,7 +158,6 @@ See examples
 
 - improve unit tests.
 - investigate 
-  - status register bits 
   - sensor calibration (website aosong?)
 - check for optimizations.
   - mainly for asynchronous
