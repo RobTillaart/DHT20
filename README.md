@@ -151,7 +151,6 @@ See examples
 #### should
 
 - add examples
-- move all implementation code to .cpp file
 - check TODO's in code.
 
 

@@ -53,14 +53,14 @@ public:
 
   //  SYNCHRONUOUS CALL
   int      read();
-  float    getHumidity()    { return _humidity    + _humOffset; };
-  float    getTemperature() { return _temperature + _tempOffset; };
+  float    getHumidity();
+  float    getTemperature();
 
   //  CALIBRATION  1st order
-  void     setHumOffset(float offset)  { _humOffset  = offset; };
-  void     setTempOffset(float offset) { _tempOffset = offset; };
-  float    getHumOffset()              { return _humOffset; };
-  float    getTempOffset()             { return _tempOffset; };
+  void     setHumOffset(float offset);
+  void     setTempOffset(float offset);
+  float    getHumOffset();
+  float    getTempOffset();
 
   //  READ STATUS
   uint8_t  readStatus();

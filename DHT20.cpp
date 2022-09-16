@@ -178,6 +178,46 @@ int DHT20::convert()
 
 ////////////////////////////////////////////////
 //
+//  TEMPERATURE & HUMIDITY & OFFSET
+//
+float DHT20::getHumidity()
+{
+  return _humidity + _humOffset;
+};
+
+
+float DHT20::getTemperature()
+{
+  return _temperature + _tempOffset;
+};
+
+
+void DHT20::setHumOffset(float offset)
+{
+  _humOffset  = offset;
+};
+
+
+void DHT20::setTempOffset(float offset)
+{
+  _tempOffset = offset;
+};
+
+
+float DHT20::getHumOffset()
+{
+  return _humOffset;
+};
+
+
+float DHT20::getTempOffset()
+{
+  return _tempOffset;
+};
+
+
+////////////////////////////////////////////////
+//
 //  STATUS
 //
 uint8_t DHT20::readStatus()
