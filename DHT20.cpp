@@ -11,7 +11,7 @@
 //  0.1.2   2022-09-16  fix #4 DHT20_ERROR_BYTES_ALL_ZERO error condition.
 //                      fix keywords
 //                      add readStatus()  fix _readStatus()
-//                      add setWireTimeout(250000, true);
+//                      add setWireTimeout(250000, true);  // in comments
 
 
 #include "DHT20.h"
@@ -42,7 +42,7 @@ DHT20::DHT20(TwoWire *wire)
 bool DHT20::begin()
 {
   _wire->begin();
-  _wire->setWireTimeout(DHT20_WIRE_TIME_OUT, true);
+  //  _wire->setWireTimeout(DHT20_WIRE_TIME_OUT, true);
   return isConnected();
 }
 
@@ -56,7 +56,7 @@ bool DHT20::begin(const uint8_t dataPin, const uint8_t clockPin)
   } else {
     _wire->begin();
   }
-  _wire->setWireTimeout(DHT20_WIRE_TIME_OUT, true);
+  //  _wire->setWireTimeout(DHT20_WIRE_TIME_OUT, true);
   return isConnected();
 }
 #endif
