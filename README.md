@@ -107,10 +107,20 @@ See the example **DHT20_async.ino**
 
 |  status bit  |  meaning                   |
 |:------------:|:---------------------------|
-|    7         |  busy making measurement   |
+|    7         |  1 = measurement, 0 = idle |
 |  6 - 4       |  unknown                   |
 |    3         |  1 = calibrated, 0 is not  |
 |  2 - 0       |  unknown                   |
+
+
+#### Experimental 0.1.4 resetSensor
+
+use with care, as this is not tested.
+
+- **uint8_t resetSensor()** if at startup the sensor does not return a status of 0x18, three registers need to be reset. 
+See datasheet 7.4 Sensor Reading Process, point 1.
+
+Based upon code for the AHT20.
 
 
 ### Timing
@@ -129,7 +139,7 @@ See the example **DHT20_async.ino**
 | DHT20_MISSING_BYTES         |   -12   |  check connection
 | DHT20_ERROR_BYTES_ALL_ZERO  |   -13   |  check connection
 | DHT20_ERROR_READ_TIMEOUT    |   -14   |
-| DHT20_ERROR_LASTREAD        |   -15   |
+| DHT20_ERROR_LASTREAD        |   -15   |  wait 1 second between reads
 
 
 ## Operation
@@ -142,13 +152,11 @@ See examples
 #### must
 
 - update documentation
-- comments in .h file
+  - status 
 
 #### should
 
-- add examples
-- check TODO's in code.
-
+- add examples.
 
 #### could
 

@@ -1,7 +1,7 @@
 //
 //    FILE: DHT20.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.3
+// VERSION: 0.1.4
 // PURPOSE: Arduino library for DHT20 I2C temperature and humidity sensor.
 //
 // HISTORY:
@@ -12,15 +12,19 @@
 //                      fix keywords
 //                      add readStatus()  fix _readStatus()
 //                      add setWireTimeout(250000, true);  // in comments
-//  0.1.3   2022-09-xx  add wrapper status functions
+//  0.1.3   2022-09-17  add wrapper status functions
 //                      improve performance read()
 //                      refactor, update readme.md
+//  0.1.4   2022-09-18  add initialization code.
+//                      add comments in .h file
+//                      add examples
 
 
 #include "DHT20.h"
 
 
 //  set DHT20_WIRE_TIME_OUT to 0 to disable.
+//  note this timeout is commented in code below.
 #define DHT20_WIRE_TIME_OUT         250000    //  microseconds
 
 const uint8_t DHT20_ADDRESS = 0x38;
@@ -68,6 +72,23 @@ bool DHT20::isConnected()
   _wire->beginTransmission(DHT20_ADDRESS);
   int rv = _wire->endTransmission();
   return rv == 0;
+}
+
+
+//  See datasheet 7.4 Sensor Reading Process, point 1
+//  use with care.
+uint8_t DHT20::resetSensor()
+{
+  uint8_t count = 255;
+  if ((readStatus() & 0x18) != 0x18)
+  {
+    count++;
+    if (_resetRegister(0x1B)) count++;
+    if (_resetRegister(0x1C)) count++;
+    if (_resetRegister(0x1E)) count++;
+    delay(10);
+  }
+  return count;
 }
 
 
@@ -249,7 +270,7 @@ int DHT20::internalStatus()
 
 ////////////////////////////////////////////////
 //
-//  OTHER
+//  TIMING
 //
 uint32_t DHT20::lastRead()
 {
