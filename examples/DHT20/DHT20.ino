@@ -32,9 +32,7 @@ void setup()
   Serial.println(DHT20_LIB_VERSION);
   Serial.println();
 
-  delay(2000);
-
-
+  delay(1000);
 }
 
 
