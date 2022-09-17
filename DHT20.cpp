@@ -318,7 +318,7 @@ uint8_t DHT20::_crc8(uint8_t *ptr, uint8_t len)
 //  0x1E returned 18, 8, 0
 //    18 seems to be status register
 //    other values unknown.
-bool _resetRegister(uint8_t reg)
+bool DHT20::_resetRegister(uint8_t reg)
 {
   uint8_t value[3];
   _wire->beginTransmission(DHT20_ADDRESS);
