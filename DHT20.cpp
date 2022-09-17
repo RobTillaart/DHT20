@@ -20,8 +20,6 @@
 #include "DHT20.h"
 
 
-#define DHT20_ACQUISITION_TIME      85        //  milliseconds
-
 //  set DHT20_WIRE_TIME_OUT to 0 to disable.
 #define DHT20_WIRE_TIME_OUT         250000    //  microseconds
 
@@ -92,11 +90,6 @@ int DHT20::read()
   {
     yield();
     delay(1);
-    //  TODO causes failure, need more investigation
-    // if ((millis() - _lastRequest) > DHT20_ACQUISITION_TIME)
-    // {
-      // return DHT20_ERROR_READ_TIMEOUT;
-    // }
   }
   //  read the measurement
   status = readData();

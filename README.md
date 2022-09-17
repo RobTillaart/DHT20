@@ -23,6 +23,8 @@ Calling these latter again will return the same values until a new **read()** is
 The **read()** call of this sensor is blocking for 80+ milliseconds (datasheet 7.4)
 so the library also has a asynchronous interface. See below.
 
+Verified to work with Arduino UNO and ESP32.
+
 
 ## Connection
 
@@ -93,12 +95,6 @@ Note there must be at least 1000 milliseconds between requests!
 - **int convert()** converts the read bits to temperature and humidity.
 
 See the example **DHT20_async.ino**
-
-In the .h file there is a line
-```cpp
-#define DHT20_ACQUISITION_TIME      85
-```
-This can be used to optimize performance a bit. Use with care.
 
 
 ### Status
