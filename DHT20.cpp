@@ -311,5 +311,40 @@ uint8_t DHT20::_crc8(uint8_t *ptr, uint8_t len)
 }
 
 
+//  Code based on demo code sent by www.aosong.com
+//  no further documentation.
+//  0x1B returned 18, 0, 4
+//  0x1C returned 18, 65, 0
+//  0x1E returned 18, 8, 0
+//    18 seems to be status register
+//    other values unknown.
+bool _resetRegister(uint8_t reg)
+{
+  uint8_t value[3];
+  _wire->beginTransmission(DHT20_ADDRESS);
+  _wire->write(reg);
+  _wire->write(0x00);
+  _wire->write(0x00);
+  if (_wire->endTransmission() != 0) return false;
+  delay(5);
+
+  int bytes = _wire->requestFrom(DHT20_ADDRESS, 3); 
+  for (int i = 0; i < bytes; i++)
+  {
+    value[i] = _wire->read();
+    //  Serial.println(value[i], HEX);
+  }
+  delay(10);
+
+  _wire->beginTransmission(DHT20_ADDRESS);
+  _wire->write(0xB0 | reg);
+  _wire->write(value[1]);
+  _wire->write(value[2]);
+  if (_wire->endTransmission() != 0) return false;
+  delay(5);
+  return true;
+}
+
+
 // -- END OF FILE --
 

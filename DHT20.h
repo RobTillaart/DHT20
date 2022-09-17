@@ -111,7 +111,7 @@ private:
   uint8_t  _crc8(uint8_t *ptr, uint8_t len);
 
   //  use with care
-  void     _resetRegister(uint8_t reg);
+  bool     _resetRegister(uint8_t reg);
 
   TwoWire* _wire;
 };
