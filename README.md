@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/DHT20/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/RobTillaart/DHT20.svg?maxAge=3600)](https://github.com/RobTillaart/DHT20/releases)
 
-[![Sponsory](https://img.shields.io/badge/Sponsor this library-YES!-lightblue.svg)](https://github.com/sponsors/RobTillaart?o=esb)
+[![Sponsor](https://img.shields.io/badge/Sponsor-DHT20-lightblue.svg)](https://github.com/sponsors/RobTillaart?o=esb)
 
 
 # DHT20
