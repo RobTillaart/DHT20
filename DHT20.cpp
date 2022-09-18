@@ -18,6 +18,7 @@
 //  0.1.4   2022-09-18  add initialization code.
 //                      add comments in .h file
 //                      add examples
+//                      stabilize readStatus()
 
 
 #include "DHT20.h"
