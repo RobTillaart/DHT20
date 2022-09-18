@@ -19,6 +19,7 @@
 //                      add comments in .h file
 //                      add examples
 //                      stabilize readStatus()
+//                      update readme.md
 
 
 #include "DHT20.h"
