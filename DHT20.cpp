@@ -15,7 +15,7 @@
 //  0.1.3   2022-09-17  add wrapper status functions
 //                      improve performance read()
 //                      refactor, update readme.md
-//  0.1.4   2022-09-18  add initialization code.
+//  0.1.4   2022-09-18  add resetSensor() code.
 //                      add comments in .h file
 //                      add examples
 //                      stabilize readStatus()
