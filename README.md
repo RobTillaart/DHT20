@@ -152,7 +152,9 @@ See examples
 #### must
 
 - update documentation
-  - status 
+  - status
+- investigate timing in readStatus()
+  - delay(1) ==> microSeconds().
 
 #### should
 

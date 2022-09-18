@@ -110,7 +110,6 @@ int DHT20::read()
   while (isMeasuring())
   {
     yield();
-    delay(1);
   }
   //  read the measurement
   status = readData();
@@ -239,7 +238,9 @@ uint8_t DHT20::readStatus()
   _wire->beginTransmission(DHT20_ADDRESS);
   _wire->write(0x71);
   _wire->endTransmission();
+  delay(1);  //  needed to stabilize timing
   _wire->requestFrom(DHT20_ADDRESS, (uint8_t)1);
+  delay(1);  //  needed to stabilize timing
   return (uint8_t) _wire->read();
 }
 
