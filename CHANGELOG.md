@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - fix requestFrom() ambiguity
 - fix #8 - embed **resetSensor()** into **read()**.
   This makes reads slightly slower.
+- update readme.md
 
 ----
 
