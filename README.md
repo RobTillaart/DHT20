@@ -27,9 +27,30 @@ Since 0.1.3 and 0.1.4 the performance of **read()** has been optimized,
 still blocking but less long for about 45 milliseconds.
 
 
+### 0.2.0
+
+In #8 a bug is described that the sensor "freezes".
+Cause is not well understood.
+
+Two solutions / workarounds are found:
+- call **resetSensor()** before EVERY **read()**. 
+This is the preferred solution.
+- use **Wire.setClock(200000)** 100 K and lower speeds freezes the sensor.
+With clock set to 200 K and above the sensor seems to work for longer periods.
+Tested several speeds on UNO, no pull ups, < 10 cm wire.
+
+Note: setting the I2C clock possibly interferes with other devices on the bus,
+so it is not a solution in the end.
+
+The 0.2.0 version embeds the **resetSensor()** into **requestData()** to 
+reset the sensor if needed in both synchronous and asynchronous calls.
+This keeps it easy for the user. The reads are 1-2 ms slower than 0.1.4. 
+Still far below the 80 ms mentioned in the datasheet. (< 50 ms).
+
+
 ### Connection
 
-Always check datasheet 
+Always check datasheet!
 
 Front view
 ```
@@ -76,7 +97,7 @@ It returns the status of the read which should be 0.
 
 ### Asynchronous interface
 
-There are two timings that need to be considdered, 
+There are two timings that need to be considered:
 - time between requests = 1000 ms
 - time between request and data ready = 80 ms
 
@@ -116,13 +137,16 @@ This function blocks a few milliseconds to optimize communication.
 
 #### Experimental 0.1.4 resetSensor
 
-Use with care, as this is not tested.
+Use with care!
 
 - **uint8_t resetSensor()** if at startup the sensor does not return a status of 0x18, 
 three registers 0x1B, 0x1C and 0x1E need to be reset. 
 See datasheet 7.4 Sensor Reading Process, point 1.
 There is no documentation about the meaning of these registers.
 The code is based upon example code for the AHT20 (from manufacturer).
+
+The call is needed to get the **read()** working well so it has been embedded into
+the read calls. (0.2.0)
 
 
 ### Timing
@@ -152,19 +176,18 @@ See examples
 ## Future
 
 #### must
-
+- improve documentation.
+- investigate the bug from #8 further
 
 #### should
 
 
 #### could
-
 - improve unit tests.
 - investigate 
   - sensor calibration (website aosong?)
 - investigate optimizing timing in readStatus()
   - delay(1) ==> microSeconds(???).
-- separate changelog.md
 - connected flag?
 
 #### won't
