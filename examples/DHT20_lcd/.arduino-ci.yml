@@ -26,5 +26,5 @@ compile:
     # - mega2560
     - rpipico
   libraries:
-    - "LiquidCrystal_I2C"
+    - "LiquidCrystal"
 
