@@ -38,7 +38,7 @@ public:
   //  fixed address 0x38
   DHT20(TwoWire *wire = &Wire);
 
-  bool     begin();
+  bool     begin(const uint8_t dataPin = 255, const uint8_t clockPin = 255);
   bool     isConnected();
   uint8_t  getAddress();
 

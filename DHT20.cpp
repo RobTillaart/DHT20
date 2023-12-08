@@ -29,8 +29,14 @@ DHT20::DHT20(TwoWire *wire)
 }
 
 
-bool DHT20::begin()
+bool DHT20::begin(const uint8_t dataPin, const uint8_t clockPin)
 {
+  if ((dataPin < 255) && (clockPin < 255))
+  {
+#if defined(ESP8266) || defined(ESP32)
+    _wire->begin(dataPin, clockPin);
+#endif
+  }
   //  _wire->setWireTimeout(DHT20_WIRE_TIME_OUT, true);
   return isConnected();
 }
